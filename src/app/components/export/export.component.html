@@ -1,0 +1,26 @@
+<div>
+  <h3>
+    Multiple Tables
+    <small>
+      <a href="https://github.com/swimlane/ngx-datatable/blob/master/demo/basic/multiple.component.ts" target="_blank">
+        Source
+      </a>
+    </small>
+  </h3>
+  <span (click)="exportCSV()" *ngIf="rows.length>0"  >
+    <span class="export-csv-icon" title="Expoty CSV File"></span>
+    <span>Export CSV</span>
+  </span>
+ 
+  <br/><br/>
+
+  <ngx-datatable
+    class="material"
+    [rows]="rows"
+    [columns]="columns"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="0"
+    [rowHeight]="100">
+  </ngx-datatable>
+</div>
