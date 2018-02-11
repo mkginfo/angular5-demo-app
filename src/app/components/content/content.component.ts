@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Observable } from 'rxjs/Rx';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { LoginService } from '../../common/services/login.service';
@@ -12,18 +12,30 @@ import { LoginModel } from '../../common/model/login-model';
 })
 export class ContentComponent implements OnInit {
 
-  login: LoginModel;
+  loginJSONDetails: LoginModel;
+  loginHTTPDetails: LoginModel;
+  login$: Observable<LoginModel>;
 
   constructor(
     private loginService: LoginService
   ) { }
 
   ngOnInit() {
-    this.login = this.getLogin();
+     this.loginJSONDetails = this.getLogin();
+     this.getLoginDetailsByHttp();
   }
 
   getLogin(): LoginModel  {
     return this.loginService.getLoginDetails();
+  }
+  
+  getLoginDetailsByHttp(){
+    
+    this.login$ = this.loginService.getLoginDetailsByHttp();
+    this.login$.subscribe( login => {
+      this.loginHTTPDetails = login;
+    });
+
   }
 
 }

@@ -1,7 +1,22 @@
+<p>Local JSON Data</p>
 <p>
   content works! <br>
-  {{login.id}} <br>
-  {{login.firstName + ' ' +login.lastName  }}<br>
-  {{login.emailAddress}}<br>
-  {{login.shortName}}<br>
+  {{loginJSONDetails.id}} <br>
+  {{loginJSONDetails.firstName + ' ' +loginJSONDetails.lastName  }}<br>
+  {{loginJSONDetails.emailAddress}}<br>
+  {{loginJSONDetails.shortName}}<br>
 </p>
+
+<br/><br/>
+
+<p>Server Side Data</p>
+<div *ngIf="login$ | async">
+  <p *ngIf="(loginHTTPDetails | json) != '{}'">
+    content works! <br>
+    {{loginHTTPDetails.id}} <br>
+    {{loginHTTPDetails.firstName + ' ' +loginHTTPDetails.lastName  }}<br>
+    {{loginHTTPDetails.emailAddress}}<br>
+    {{loginHTTPDetails.shortName}}<br>
+  </p>
+</div>
+
